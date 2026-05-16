@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Andry Andriyovich | Веганські сирки ручної роботи без цукру. Натуральні ласощі з кеш'ю, кокоса та агави.">
+    <title>Andry Andriyovich | Веганські сирки з любов'ю</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #FEFAF5;
+            font-family: 'Inter', sans-serif;
+            color: #2E2820;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Лофт-текстура фону */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" opacity="0.03"><path d="M20 20 L180 20 M20 40 L180 40 M20 60 L180 60 M20 80 L180 80 M20 100 L180 100 M20 120 L180 120 M20 140 L180 140 M20 160 L180 160 M20 180 L180 180 M40 20 L40 180 M60 20 L60 180 M80 20 L80 180 M100 20 L100 180 M120 20 L120 180 M140 20 L140 180 M160 20 L160 180" stroke="%23D4B48C" stroke-width="0.8" fill="none"/></svg>');
+            background-repeat: repeat;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Header фіксований */
+        header {
+            position: fixed;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 32px);
+            max-width: 1300px;
+            background: rgba(46, 40, 32, 0.85);
+            backdrop-filter: blur(16px);
+            border-radius: 60px;
+            padding: 12px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            z-index: 1000;
+            border: 1px solid rgba(245, 222, 179, 0.3);
+            transition: all 0.3s;
+        }
+
+        header.scrolled {
+            background: rgba(30, 24, 18, 0.95);
+            top: 8px;
+        }
+
+        .logo h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #F7E5C2, #DBA455);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .logo p {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: #E7C697;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 8px;
+            background: rgba(0,0,0,0.3);
+            padding: 4px 8px;
+            border-radius: 40px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            font-weight: 600;
+            font-size: 0.8rem;
+            padding: 6px 14px;
+            border-radius: 40px;
+            cursor: pointer;
+            color: #F5E6D3;
+            transition: 0.2s;
+        }
+
+        .lang-btn.active {
+            background: #D89F43;
+            color: #1A1510;
+        }
+
+        .btn-order-top {
+            background: #D89F43;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        /* Hero секція */
+        .hero {
+            padding: 140px 0 80px;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .hero-text h2 {
+            font-size: 3.6rem;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 20px;
+            line-height: 1.15;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: #5E4B36;
+            margin-bottom: 28px;
+        }
+
+        .hero-image {
+            background: #EBDBC8;
+            border-radius: 32px;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+            box-shadow: 18px 18px 0 rgba(185, 127, 46, 0.2);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Секції */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .section-header h3 {
+            font-size: 2.2rem;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 10px;
+        }
+
+        .section-header p {
+            color: #6B5A48;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 32px;
+        }
+
+        .product-card {
+            background: #FFFFFFC9;
+            backdrop-filter: blur(4px);
+            border-radius: 28px;
+            overflow: hidden;
+            transition: 0.3s;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.05);
+            border: 1px solid #F2E2CE;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: #DBA455;
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.2);
+        }
+
+        .product-img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            background: #F0E2D0;
+        }
+
+        .product-info {
+            padding: 22px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-info h4 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-family: 'Playfair Display', serif;
+            color: #3D2B1A;
+        }
+
+        .product-desc {
+            font-size: 0.9rem;
+            color: #5E4B36;
+            margin: 12px 0;
+            line-height: 1.5;
+        }
+
+        .product-flavors {
+            font-size: 0.85rem;
+            color: #B87D35;
+            margin: 8px 0;
+            font-weight: 500;
+        }
+
+        .product-feature {
+            display: inline-block;
+            background: #F8EDE0;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #BC7A2E;
+            margin-top: 8px;
+            align-self: flex-start;
+        }
+
+        /* Філософія */
+        .philosophy {
+            background: #F1E6DA;
+            border-radius: 48px;
+            padding: 56px 48px;
+            margin: 40px 0;
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: 1fr 0.8fr;
+            gap: 48px;
+        }
+
+        .quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            border-left: 4px solid #D89F43;
+            padding-left: 28px;
+        }
+
+        .benefits-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .benefits-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .benefits-list li i {
+            color: #D89F43;
+            width: 24px;
+        }
+
+        /* Контакти */
+        .contacts-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            justify-content: center;
+            margin: 48px 0;
+        }
+
+        .contact-card {
+            background: #FDF9F3;
+            border-radius: 32px;
+            padding: 28px;
+            text-align: center;
+            flex: 1;
+            min-width: 220px;
+            border: 1px solid #EAD8C2;
+            transition: 0.2s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: #D89F43;
+        }
+
+        .contact-card i {
+            font-size: 2rem;
+            color: #C68836;
+            margin-bottom: 12px;
+        }
+
+        .messenger-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .messenger-link, .btn-call {
+            background: #EFE3D4;
+            padding: 10px 18px;
+            border-radius: 40px;
+            text-decoration: none;
+            color: #2E2820;
+            font-weight: 500;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+
+        .messenger-link:hover, .btn-call:hover {
+            background: #E8D5C0;
+            transform: scale(1.02);
+        }
+
+        .btn-call {
+            background: #D89F43;
+            color: #1E1A15;
+            margin-top: 12px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid #E8D9C9;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 780px) {
+            .hero-grid, .philosophy-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-text h2 {
+                font-size: 2.2rem;
+            }
+            header {
+                flex-direction: column;
+                align-items: stretch;
+                border-radius: 28px;
+            }
+            .section {
+                padding: 50px 0;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header id="mainHeader">
+    <div class="logo">
+        <h1>ANDRIY ANDRIYOVYCH</h1>
+        <p id="brandSub">raw vegan cheeses & sweets</p>
+    </div>
+    <div style="display: flex; gap: 12px; align-items: center;">
+        <div class="lang-switch">
+            <button class="lang-btn active" data-lang="uk">УКР</button>
+            <button class="lang-btn" data-lang="en">ENG</button>
+        </div>
+        <button class="btn-order-top" id="contactTopBtn"><i class="fas fa-heart"></i> <span id="topBtnText">Замовити</span></button>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <!-- Hero секція -->
+        <section class="hero">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <h2 id="heroTitle">Веганські сирки ручної роботи<br>без цукру та молочних продуктів</h2>
+                    <p id="heroDesc">Натуральний склад на основі горіхів кеш'ю, сиропу агави та кокосових вершків. Створюємо смак, що дарує радість і легкість.</p>
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px;">
+                        <span style="background:#F2E2CE; padding:6px 14px; border-radius:30px;">🌱 100% рослинні</span>
+                        <span style="background:#F2E2CE; padding:6px 14px; border-radius:30px;">🍯 без білого цукру</span>
+                        <span style="background:#F2E2CE; padding:6px 14px; border-radius:30px;">🤲 ручна робота</span>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="cottage%20cheese.jpg" alt="Подарунковий набір сирків" onerror="this.src='https://placehold.co/600x600/F2E2CE/BC7A2E?text=Andry+Cheeses'">
+                </div>
+            </div>
+        </section>
+
+        <!-- Галерея товарів -->
+        <section class="section" id="gallery">
+            <div class="section-header">
+                <h3 id="galleryTitle">Наші ласощі</h3>
+                <p id="gallerySub">Кожен десерт — маленька історія кохання до натуральних продуктів</p>
+            </div>
+            <div class="gallery-grid" id="productsGrid"></div>
+        </section>
+
+        <!-- Філософія -->
+        <div class="philosophy">
+            <div class="philosophy-grid">
+                <div>
+                    <h3 style="font-size: 2rem; font-family: 'Playfair Display';">Чому обирають нас?</h3>
+                    <ul class="benefits-list">
+                        <li><i class="fas fa-check-circle"></i> Підходять для людей, які не вживають білий цукор</li>
+                        <li><i class="fas fa-check-circle"></i> Збалансовані та в міру солодкі (агава, фініки, мед)</li>
+                        <li><i class="fas fa-check-circle"></i> Лише рослинні масла: кокосове, какао-масло</li>
+                        <li><i class="fas fa-check-circle"></i> Не викликають важкості — навпаки, додають сили</li>
+                        <li><i class="fas fa-check-circle"></i> Естетична подарункова коробка</li>
+                        <li><i class="fas fa-check-circle"></i> Підходить дітям і дорослим</li>
+                        <li><i class="fas fa-check-circle"></i> Свіже приготування під замовлення</li>
+                    </ul>
+                </div>
+                <div class="quote">
+                    “Ласощі з натуральним складом. Солодкаві за рахунок агави, приємні кокосовими вершками, і лимонною цедрою яка підіймає кутики губ.”
+                </div>
+            </div>
+        </div>
+
+        <!-- Контакти -->
+        <section id="contacts">
+            <div class="section-header">
+                <h3 id="contactsHeader">Завжди на зв'язку</h3>
+                <p id="contactsSub">Замовляйте з Одеси та по всій Україні. Доставка Новою поштою, таксі або самовивіз</p>
+            </div>
+            <div class="contacts-grid">
+                <div class="contact-card">
+                    <i class="fas fa-phone-alt"></i>
+                    <h4>Телефон</h4>
+                    <p>+380 63 627 5810</p>
+                    <a href="tel:+380636275810" class="btn-call"><i class="fas fa-phone"></i> Зателефонувати</a>
+                </div>
+                <div class="contact-card">
+                    <i class="fab fa-telegram-plane"></i>
+                    <h4>Месенджери</h4>
+                    <div class="messenger-group">
+                        <a href="https://t.me/+380636275810" target="_blank" class="messenger-link"><i class="fab fa-telegram"></i> Telegram</a>
+                        <a href="https://wa.me/380636275810" target="_blank" class="messenger-link"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <a href="viber://chat?number=%2B380636275810" class="messenger-link"><i class="fab fa-viber"></i> Viber</a>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <i class="fab fa-instagram"></i>
+                    <h4>Instagram</h4>
+                    <a href="https://www.instagram.com/andry_andriyovich/" target="_blank" class="messenger-link">@andry_andriyovich</a>
+                    <p style="margin-top: 12px; font-size: 0.85rem;">📍 Самовивіз: Одеса, вул. Св.Ріхтера 125</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer>
+    <p>© 2025 Andry Andriyovich — Веганські сирки з любов'ю | Ручна робота | Одеса | Доставка по Україні</p>
+</footer>
+
+<script>
+    // ========== ДАНІ ПРО ТОВАРИ З ПРАВИЛЬНИМИ ШЛЯХАМИ ДО ФОТО .jpg ==========
+    const productsData = {
+        uk: [
+            { name: "Presto — Набір веганських сирків", desc: "В міру солодкі, на основі горіхів кешʼю, з сиропом агави замість цукру, кокосовими вершками та натуральними ягодами. Естетична насолода для гурманів.", flavors: "Смаки: Матча-полуниця · Малинка · Лісова ягода · Трюфельний шоколад · Апельсин · Лимон · Халва", feature: "🌱 без цукру та молочних", img: "Presto.jpg" },
+            { name: "Малинове серце (Raspberry Heart)", desc: "Малиново-екстатичні смакотулечки. Малина проціджується через сито, без кісточок. Сублімована малинка та буряк дарують рубіново-малиновий колір. Справжній символ кохання!", flavors: "Малина · Буряк · Натуральний колір", feature: "❤️ символ кохання", img: "raspberryHeart.jpg" },
+            { name: "Шоколадний сирок", desc: "Завжди працююча класика. Темний какао порошок з високим вмістом какао масла 22%. Хрустка глазур з какао тертого і какао масла. Насичений смак та моментальне включення.", flavors: "Темний шоколад · Какао масло · Без цукру", feature: "🍫 насичена класика", img: "chocolate.jpg" },
+            { name: "Matcha Heart (Полуниця-матча)", desc: "Успішне поєднання, як кохання. Джемове наповнення на основі чіа — суперфуду для цінителів здоров'я. Полуничне вареннячко, смарагдова глазур з матчею, та ніжна основа з кешью.", flavors: "Полуниця · Матча · Чіа · Кешью", feature: "💚 гармонія смаку", img: "MatchaHeart.jpg" },
+            { name: "Лісова ягода (Wild Berry)", desc: "Королева лісових смаків. В складі ягоди смородини, чорниці та анчан. Ягідний сирок лідирує серед улюбленців рослинних солодощів.", flavors: "Смородина · Чорниця · Анчан", feature: "🫐 лісова насолода", img: "wild%20berry.jpg" },
+            { name: "Лимонний сирок (Wild Lemon)", desc: "Свіжість, соковитість, та кисленький вау-ефект. У веганських сирках це щось новеньке, залишає по собі приємну усмішку. Один з топових смаків.", flavors: "Лимон · Свіжість · Вітаміни", feature: "🍋 топовий смак", img: "wild%20lemon.jpg" },
+            { name: "Апельсинова бавовна (Orange Cotton)", desc: "Серце, яке нагадує ніжну хмарку що огортає язичок та піднебіння. Пломбірний сирок з апельсиновим наповненням покривається персиковою глазурʼю. Повністю рослинні, ручна робота.", flavors: "Апельсин · Персикова глазур", feature: "🍊 ніжна хмарка", img: "Orange%20cotton.jpg" },
+            { name: "Подарунковий набір 24 сирки", desc: "Свята — це про увагу й прості радощі. Усередині 24 ніжних десерти. 100% рослинний · Без цукру-рафінату · Ручна робота. Естетично святкова упаковка.", flavors: "Ягідний · Лимонний · Апельсиновий · Шоколадний · Малиновий · Матча-полуниця", feature: "🎁 ідеальний подарунок", img: "cottage%20cheese.jpg" },
+            { name: "Шоколадно-яблучний пудинг", desc: "Прянощі: кориця, гвоздика, мускатний горіх. Яблука тушковані до стану пюре з додаванням какао тертого на водяній бані. Зверху подрібнені волоські горіхи.", flavors: "Яблуко · Кориця · Какао · Волоський горіх", feature: "🍎 простий і насичений", img: "Chocolate%20apple%20pudding.jpg" }
+        ],
+        en: [
+            { name: "Presto — Vegan Cheese Set", desc: "Moderately sweet, based on cashew nuts, agave syrup, coconut cream and natural berries. Aesthetic pleasure for gourmets.", flavors: "Flavors: Matcha-strawberry · Raspberry · Wild berry · Truffle chocolate · Orange · Lemon · Halva", feature: "🌱 no sugar & dairy", img: "Presto.jpg" },
+            { name: "Raspberry Heart", desc: "Raspberry-extatic deliciousness. Raspberry strained, no seeds. Freeze-dried raspberry and beet give ruby color. A true symbol of love!", flavors: "Raspberry · Beet", feature: "❤️ symbol of love", img: "raspberryHeart.jpg" },
+            { name: "Chocolate Cheese", desc: "Always working classic. Dark cocoa powder with 22% cocoa butter. Crispy glaze from cocoa liquor and cocoa butter. Rich taste.", flavors: "Dark chocolate · Cocoa butter", feature: "🍫 rich classic", img: "chocolate.jpg" },
+            { name: "Matcha Heart", desc: "Successful combination like love. Jam filling based on chia. Strawberry jam, emerald matcha glaze, and tender cashew base.", flavors: "Strawberry · Matcha · Chia · Cashew", feature: "💚 harmony of taste", img: "MatchaHeart.jpg" },
+            { name: "Wild Berry", desc: "Queen of forest flavors. Blackcurrant, blueberry and anchan berries. A leader among plant-based sweets.", flavors: "Blackcurrant · Blueberry · Anchan", feature: "🫐 forest delight", img: "wild%20berry.jpg" },
+            { name: "Wild Lemon", desc: "Freshness, juiciness, and a sour wow effect. One of the top flavors among our cheeses.", flavors: "Lemon · Freshness", feature: "🍋 top flavor", img: "wild%20lemon.jpg" },
+            { name: "Orange Cotton", desc: "A heart like a gentle cloud. Ice cream cheese with orange filling covered with peach glaze. Completely plant-based, handmade.", flavors: "Orange · Peach glaze", feature: "🍊 gentle cloud", img: "Orange%20cotton.jpg" },
+            { name: "Gift Set 24 Cheeses", desc: "Inside 24 tender desserts. 100% plant-based · No refined sugar · Handmade. Festive packaging, perfect for family and friends.", flavors: "Berry · Lemon · Orange · Chocolate · Raspberry · Matcha-strawberry", feature: "🎁 perfect gift", img: "cottage%20cheese.jpg" },
+            { name: "Chocolate Apple Pudding", desc: "Spices: cinnamon, cloves, nutmeg. Apples stewed to puree with cocoa liquor. Chopped walnuts on top.", flavors: "Apple · Cinnamon · Cocoa · Walnut", feature: "🍎 simple & rich", img: "Chocolate%20apple%20pudding.jpg" }
+        ]
+    };
+
+    let currentLang = 'uk';
+
+    const translations = {
+        uk: {
+            brandSub: "raw vegan cheeses & sweets",
+            heroTitle: "Веганські сирки ручної роботи<br>без цукру та молочних продуктів",
+            heroDesc: "Натуральний склад на основі горіхів кеш'ю, сиропу агави та кокосових вершків. Створюємо смак, що дарує радість і легкість.",
+            galleryTitle: "Наші ласощі",
+            gallerySub: "Кожен десерт — маленька історія кохання до натуральних продуктів",
+            contactsHeader: "Завжди на зв'язку",
+            contactsSub: "Замовляйте з Одеси та по всій Україні. Доставка Новою поштою, таксі або самовивіз",
+            topBtnText: "Замовити"
+        },
+        en: {
+            brandSub: "raw vegan cheeses & sweets",
+            heroTitle: "Handmade vegan cheeses<br>without sugar & dairy",
+            heroDesc: "Natural ingredients based on cashews, agave syrup and coconut cream. Creating a taste that brings joy and lightness.",
+            galleryTitle: "Our delights",
+            gallerySub: "Each dessert is a little love story to natural ingredients",
+            contactsHeader: "Always in touch",
+            contactsSub: "Order from Odesa and throughout Ukraine. Delivery by Nova Poshta, taxi or pickup",
+            topBtnText: "Order now"
+        }
+    };
+
+    function renderProducts() {
+        const container = document.getElementById('productsGrid');
+        if (!container) return;
+        container.innerHTML = productsData[currentLang].map(p => `
+            <div class="product-card">
+                <img class="product-img" src="${p.img}" alt="${p.name}" onerror="this.style.display='none'; this.parentElement.querySelector('.no-image-fallback')?.style.setProperty('display','flex');">
+                <div class="product-info">
+                    <h4>${p.name}</h4>
+                    <div class="product-desc">${p.desc}</div>
+                    <div class="product-flavors"><i class="fas fa-tag"></i> ${p.flavors}</div>
+                    <span class="product-feature">${p.feature}</span>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        const t = translations[lang];
+        document.getElementById('brandSub').innerText = t.brandSub;
+        document.getElementById('heroTitle').innerHTML = t.heroTitle;
+        document.getElementById('heroDesc').innerText = t.heroDesc;
+        document.getElementById('galleryTitle').innerText = t.galleryTitle;
+        document.getElementById('gallerySub').innerText = t.gallerySub;
+        document.getElementById('contactsHeader').innerText = t.contactsHeader;
+        document.getElementById('contactsSub').innerText = t.contactsSub;
+        document.getElementById('topBtnText').innerText = t.topBtnText;
+        renderProducts();
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
+            else btn.classList.remove('active');
+        });
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang')));
+    });
+    document.getElementById('contactTopBtn').addEventListener('click', () => {
+        document.getElementById('contacts').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) document.getElementById('mainHeader').classList.add('scrolled');
+        else document.getElementById('mainHeader').classList.remove('scrolled');
+    });
+
+    setLanguage('uk');
+</script>
+</body>
+</html>
